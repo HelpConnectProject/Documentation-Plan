@@ -9,6 +9,12 @@ A felhasználói profilok szintén fontos szerepet kapnak: megjelenítik, hogy a
 
 A HelpConnect így egy modern, közösségépítő felületként szolgál, amely támogatja az önkéntesek és civil szervezetek közötti hatékonyabb együttműködést, és hozzájárul a társadalmi felelősségvállalás előmozdításához.
 
+Frontend : Angular;
+
+Backend : Laravel;
+
+Adatbázis : MySql;
+
 ## Funkciók
 * Eseményszervezési lehetőség civil szervezetek számára
 * Regisztrált civil szervezetek listázása(kis leírás róluk, vélemények,        egyszerű fórum, bankszámlaszám, stb)
