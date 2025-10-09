@@ -68,3 +68,7 @@ munkáját.
 
 * organizationProfileComponent – a szervezet adatlapjának megtekintése és szerkesztése (leírás, logó, bankszámlaszám, elérhetőségek, kategória stb.).
 
+* organizationNotificationsComponent – rendszerértesítések kezelése (új jelentkezés, visszajelzés, eseményemlékeztetők). Ha pl. a felhasználók jelentkeznek egy eseményre, itt 
+ebben az értesítésiközpontban lesznek összegyűjtve.
+
+
