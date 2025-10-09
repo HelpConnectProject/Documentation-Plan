@@ -120,8 +120,199 @@ Lehetőség:
 Kommentelés, kérdésfeltevés szervezetekhez.
 Saját kommentek törlése.
 
+## Adatbázis terv
 
+#### 1. users (önkéntes felhasználók)
 
+| Oszlop         | Típus                | Megjegyzés                     |
+| -------------- | -------------------- | ------------------------------ |
+| id             | INT (PK, AI)         | Felhasználó azonosító          |
+| name           | VARCHAR(100)         | Név                            |
+| email          | VARCHAR(150), UNIQUE | E-mail                         |
+| password       | VARCHAR(255)         | Titkosított jelszó             |
+| city           | VARCHAR(100)         | Város                          |
+| about          | TEXT                 | Rövid bemutatkozás             |
+| interests      | TEXT                 | Érdeklődési körök              |
+| qualification  | VARCHAR(255)         | Végzettség(ek)                 |
+| experience     | TEXT                 | Tapasztalat, korábbi részvétel |
+| profile\_image | VARCHAR(255)         | Profilkép elérési útja         |
+| created\_at    | TIMESTAMP            |                                |
+| updated\_at    | TIMESTAMP            |                                |
 
+#### 2. organizations
 
+| Oszlop          | Típus                | Megjegyzés                |
+| --------------- | -------------------- | ------------------------- |
+| id              | INT (PK, AI)         | Szervezet azonosító       |
+| name            | VARCHAR(150)         | Szervezet neve            |
+| email           | VARCHAR(150), UNIQUE | Bejelentkezéshez          |
+| password        | VARCHAR(255)         | Jelszó                    |
+| description     | TEXT                 | Rövid leírás              |
+| logo            | VARCHAR(255)         | Logó képfájl elérési útja |
+| category        | VARCHAR(100)         | Tevékenységi kör          |
+| phone           | VARCHAR(50)          | Telefonszám               |
+| address         | VARCHAR(255)         | Székhely                  |
+| bank\_account   | VARCHAR(255)         | Bankszámlaszám            |
+| active\_members | INT                  | Aktív tagok száma         |
+| avg\_rating     | FLOAT                | Átlagos értékelés         |
+| created\_at     | TIMESTAMP            |                           |
+| updated\_at     | TIMESTAMP            |                           |
 
+#### 3. events
+
+| Oszlop           | Típus                                   | Megjegyzés        |
+| ---------------- | --------------------------------------- | ----------------- |
+| id               | INT (PK, AI)                            | Esemény azonosító |
+| organization\_id | INT (FK → organizations.id)             | Szervező          |
+| title            | VARCHAR(255)                            | Esemény címe      |
+| description      | TEXT                                    | Leírás            |
+| location         | VARCHAR(255)                            | Helyszín          |
+| date             | DATETIME                                | Időpont           |
+| status           | ENUM('Függőben', 'Megtelt', 'Lezárult') | Állapot           |
+| capacity         | INT                                     | Maximális létszám |
+| created\_at      | TIMESTAMP                               |                   |
+| updated\_at      | TIMESTAMP                               |                   |
+
+#### 4. event_registrations
+
+| Oszlop         | Típus                                     | Megjegyzés             |
+| -------------- | ----------------------------------------- | ---------------------- |
+| id             | INT (PK, AI)                              | Regisztráció azonosító |
+| user\_id       | INT (FK → users.id)                       | Jelentkező             |
+| event\_id      | INT (FK → events.id)                      | Cél esemény            |
+| status         | ENUM('Függőben', 'Elfogadva', 'Lemondva') |                        |
+| registered\_at | TIMESTAMP                                 | Jelentkezés ideje      |
+
+#### 5. feedbacks
+
+| Oszlop           | Típus                          | Megjegyzés        |
+| ---------------- | ------------------------------ | ----------------- |
+| id               | INT (PK, AI)                   |                   |
+| user\_id         | INT (FK → users.id)            | Ki adta           |
+| organization\_id | INT (FK → organizations.id)    | Kire vonatkozik   |
+| event\_id        | INT (FK → events.id, NULLABLE) | Opcionális        |
+| rating           | INT (1–5)                      | Értékelés         |
+| comment          | TEXT                           | Szöveges vélemény |
+| image            | VARCHAR(255), NULL             | Kép (opcionális)  |
+| created\_at      | TIMESTAMP                      |                   |
+
+#### 6. badges
+
+| Oszlop      | Típus        | Megjegyzés   |
+| ----------- | ------------ | ------------ |
+| id          | INT (PK, AI) |              |
+| name        | VARCHAR(100) | Jelvény neve |
+| description | TEXT         | Leírás       |
+| icon        | VARCHAR(255) | Ikon         |
+| created\_at | TIMESTAMP    |              |
+
+#### 7. user_badges
+
+| Oszlop     | Típus                | Megjegyzés  |
+| ---------- | -------------------- | ----------- |
+| id         | INT (PK, AI)         |             |
+| user\_id   | INT (FK → users.id)  |             |
+| badge\_id  | INT (FK → badges.id) |             |
+| earned\_at | TIMESTAMP            | Mikor kapta |
+
+#### 8. forums
+
+| Oszlop           | Típus                       | Megjegyzés       |
+| ---------------- | --------------------------- | ---------------- |
+| id               | INT (PK, AI)                |                  |
+| organization\_id | INT (FK → organizations.id) | Fórum szervezete |
+| title            | VARCHAR(255)                | Fórum témája     |
+| created\_at      | TIMESTAMP                   |                  |
+
+#### 9. forum_posts
+
+| Oszlop           | Típus                                 | Megjegyzés        |
+| ---------------- | ------------------------------------- | ----------------- |
+| id               | INT (PK, AI)                          |                   |
+| forum\_id        | INT (FK → forums.id)                  |                   |
+| user\_id         | INT (FK → users.id, NULLABLE)         |                   |
+| organization\_id | INT (FK → organizations.id, NULLABLE) |                   |
+| content          | TEXT                                  | Bejegyzés szövege |
+| created\_at      | TIMESTAMP                             |                   |
+
+#### 10. notifications
+
+| Oszlop           | Típus                                 | Megjegyzés                             |
+| ---------------- | ------------------------------------- | -------------------------------------- |
+| id               | INT (PK, AI)                          |                                        |
+| user\_id         | INT (FK → users.id, NULLABLE)         |                                        |
+| organization\_id | INT (FK → organizations.id, NULLABLE) |                                        |
+| message          | TEXT                                  | Értesítés tartalma                     |
+| type             | VARCHAR(100)                          | pl. "event\_reminder", "new\_feedback" |
+| is\_read         | BOOLEAN                               | Alapértelmezett: false                 |
+| created\_at      | TIMESTAMP                             |                                        |
+
+## Végpontterv (REST API Endpointok)
+
+#### Autentikáció
+
+| Módszer | URL             | Leírás                           |
+| ------- | --------------- | -------------------------------- |
+| `POST`  | `/api/register` | Új felhasználó regisztrálása     |
+| `POST`  | `/api/login`    | Bejelentkezés (token visszaadás) |
+| `POST`  | `/api/logout`   | Kijelentkezés                    |
+
+#### Felhasználók
+
+| Módszer | URL                                  | Leírás                          |
+| ------- | ------------------------------------ | ------------------------------- |
+| `GET`   | `/api/users/{id}`                    | Felhasználó adatainak lekérése  |
+| `PUT`   | `/api/users/{id}`                    | Saját profil szerkesztése       |
+| `GET`   | `/api/users/{id}/badges`             | Saját jelvényei                 |
+| `GET`   | `/api/users/{id}/events`             | Részvett események              |
+| `GET`   | `/api/users/{id}/notifications`      | Értesítések lekérése            |
+| `PUT`   | `/api/users/{id}/notifications/read` | Értesítések olvasottra állítása |
+
+#### Civil szervezetek
+
+| Módszer | URL                                     | Leírás                            |
+| ------- | --------------------------------------- | --------------------------------- |
+| `GET`   | `/api/organizations`                    | Összes szervezet listázása        |
+| `GET`   | `/api/organizations/{id}`               | Egy szervezet részletes adatlapja |
+| `PUT`   | `/api/organizations/{id}`               | Saját profil szerkesztése         |
+| `GET`   | `/api/organizations/{id}/events`        | Az adott szervezet eseményei      |
+| `GET`   | `/api/organizations/{id}/volunteers`    | Korábbi önkéntesek listája        |
+| `GET`   | `/api/organizations/{id}/feedbacks`     | Visszajelzések lekérése           |
+| `POST`  | `/api/organizations/{id}/notifications` | Új értesítés létrehozása          |
+
+#### Események
+| Módszer  | URL                         | Leírás                 |
+| -------- | --------------------------- | ---------------------- |
+| `GET`    | `/api/events`               | Összes esemény         |
+| `GET`    | `/api/events/{id}`          | Egy esemény részletei  |
+| `POST`   | `/api/events`               | Új esemény létrehozása |
+| `PUT`    | `/api/events/{id}`          | Esemény szerkesztése   |
+| `DELETE` | `/api/events/{id}`          | Esemény törlése        |
+| `POST`   | `/api/events/{id}/register` | Jelentkezés eseményre  |
+| `DELETE` | `/api/events/{id}/cancel`   | Jelentkezés lemondása  |
+
+#### Visszajelzések
+
+| Módszer | URL                                | Leírás                                        |
+| ------- | ---------------------------------- | --------------------------------------------- |
+| `POST`  | `/api/feedbacks`                   | Új értékelés létrehozása                      |
+| `GET`   | `/api/feedbacks/{organization_id}` | Egy szervezethez tartozó értékelések lekérése |
+| `GET`   | `/api/feedbacks/event/{event_id}`  | Egy eseményhez tartozó értékelések lekérése   |
+
+#### Fórum
+
+| Módszer  | URL                      | Leírás                                 |
+| -------- | ------------------------ | -------------------------------------- |
+| `GET`    | `/api/forums`            | Fórumok listája                        |
+| `GET`    | `/api/forums/{id}`       | Egy fórum témái                        |
+| `POST`   | `/api/forums`            | Új fórum létrehozása (szervezet által) |
+| `POST`   | `/api/forums/{id}/posts` | Új hozzászólás létrehozása             |
+| `DELETE` | `/api/forums/posts/{id}` | Saját komment törlése                  |
+
+#### Jelvények
+
+| Módszer | URL                                 | Leírás                                |
+| ------- | ----------------------------------- | ------------------------------------- |
+| `GET`   | `/api/badges`                       | Jelvények listája                     |
+| `POST`  | `/api/badges`                       | Új jelvény létrehozása (admin)        |
+| `POST`  | `/api/users/{id}/badges/{badge_id}` | Jelvény hozzárendelése felhasználóhoz |
