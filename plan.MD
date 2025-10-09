@@ -21,3 +21,27 @@ A HelpConnect így egy modern, közösségépítő felületként szolgál, amely
 * Emlékeztetőt kapnának email-ben az önkéntesek a közelgő eseményről
 * Esemény státusza: Függőben, megtelt, lezárult
 * Önkéntes adatlap: név, profilkép, város, érdeklődési körök, tapasztalat/részvételi előzmények, képesítés, végzettség feltüntetése
+
+## Komponensek
+### Bejelntkezés nélkül látható komponensek
+Amikor a civil szervezet és a felhasználó belép, úgy hogy még nincs bejelentkezve, ezeket fogja látni :
+
+* homeComponent - (Kezdőképernyő, ez jelenik meg ha a felhasználó belép)
+Tartalmazza : Weboldal alapvető bemutatása, bejelntkezési menüsáv.
+
+* userLoginComponent - felhasználóknak.
+A felhasználó bejelntkezik a weboldalra. Ez csak a felhasználóra (önkéntesre) vonatkozik.
+
+* organizationLoginComponent -
+A civil szervezet bejelentkezik a weboldalra. Ez csak a szervezetre vonatkozik.
+
+* eventsComponent -
+Megszervezett események összegyűjtve.
+Láthatja a felhasználó is, és a civil szervezet is.
+
+* organizationListComponent - 
+A civil szervezetek listája.
+
+* contactUsComponent - 
+Ügyfélszolgálatunk. Hibák, fennakadások esetén.
+ 
