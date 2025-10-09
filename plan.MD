@@ -44,4 +44,5 @@ A civil szervezetek listája.
 
 * contactUsComponent - 
 Ügyfélszolgálatunk. Hibák, fennakadások esetén.
- 
+
+### Bejelentkezéssel látható komponensek
