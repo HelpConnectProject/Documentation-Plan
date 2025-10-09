@@ -45,4 +45,26 @@ A civil szervezetek listája.
 * contactUsComponent - 
 Ügyfélszolgálatunk. Hibák, fennakadások esetén.
 
+* forumsComponent
+A különböző szervezetek fórumai(bejelentkezés nélkül lehet látni, de írni nem lehet)
+
 ### Bejelentkezéssel látható komponensek
+
+#### Civil szervezeteknek
+
+* createEventComponent - 
+A szervezetnek itt tud létrehozni eseményeket.
+
+* myEventsComponent -
+Saját már lezárult és aktív eseményeinek listája. Itt szerkeszteni is tudja a
+még szervezés alatt álló eseményeit. Egyszerűbb statisztikák megjelenítése.
+
+* volunteerListComponent - 
+A már korábban valamilyen eseményen résztvett önkéntesek listája, aktivitási
+adatokkal feltöltve.
+
+* volunteerFeedbackComponent – az esemény után a szervezet értékelheti az önkéntes munkáját (pl. aktivitás, megbízhatóság, együttműködés). Csilagokkal tudja majd értékelni az önkéntes 
+munkáját.
+
+* organizationProfileComponent – a szervezet adatlapjának megtekintése és szerkesztése (leírás, logó, bankszámlaszám, elérhetőségek, kategória stb.).
+
