@@ -15,6 +15,9 @@ Backend : Laravel;
 
 Adatbázis : MySql;
 
+## Weboldal kinézetének megtekintése
+Github link: https://github.com/HelpConnectProject/Frontend.git
+
 ## Funkciók
 * Eseményszervezési lehetőség civil szervezetek számára
 * Regisztrált civil szervezetek listázása(kis leírás róluk, vélemények,        egyszerű fórum, bankszámlaszám, stb)
@@ -34,11 +37,9 @@ Amikor a civil szervezet és a felhasználó belép, úgy hogy még nincs bejele
 * homeComponent - (Kezdőképernyő, ez jelenik meg ha a felhasználó belép)
 Tartalmazza : Weboldal alapvető bemutatása, bejelntkezési menüsáv.
 
-* userLoginComponent - felhasználóknak.
-A felhasználó bejelntkezik a weboldalra. Ez csak a felhasználóra (önkéntesre) vonatkozik.
+* navbarComponent - Navigációs menüsáv
 
-* organizationLoginComponent -
-A civil szervezet bejelentkezik a weboldalra. Ez csak a szervezetre vonatkozik.
+* loginComponent - Belépés felhasználók és civil szervezetek számára.
 
 * eventsComponent -
 Megszervezett események összegyűjtve.
