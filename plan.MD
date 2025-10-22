@@ -5,7 +5,7 @@ HelpConnect célja, hogy digitális platformot biztosítson civil szervezetek sz
 
 A platform nem csupán események gyűjtőhelyeként szolgál, hanem átfogó adatbázist kínál a civil szervezetekről is. Minden szervezethez részletes profil tartozik, amely tartalmazza tevékenységi körét, az aktív tagok számát, valamint a felhasználók által adott értékeléseket és visszajelzéseket.
 
-A felhasználói profilok szintén fontos szerepet kapnak: megjelenítik, hogy a felhasználó mely szervezeteknél vett részt önkéntes tevékenységben, valamint különböző jelvényekkel (badge-ekkel) ismerik el az aktivitását. Emellett a profilok tartalmazhatják a felhasználó szakmai hátterét is – például ha valaki pszichológus végzettséggel rendelkezik, ezt a rendszer feltünteti, így az ilyen kompetenciát igénylő szervezetek könnyebben kapcsolatba léphetnek vele.
+A felhasználói profilok szintén fontos szerepet kapnak: megjelenítik, hogy a felhasználó mely szervezeteknél vett részt önkéntes tevékenységben. Emellett a profilok tartalmazhatják a felhasználó szakmai hátterét is – például ha valaki pszichológus végzettséggel rendelkezik, ezt a rendszer feltünteti, így az ilyen kompetenciát igénylő szervezetek könnyebben kapcsolatba léphetnek vele.
 
 A HelpConnect így egy modern, közösségépítő felületként szolgál, amely támogatja az önkéntesek és civil szervezetek közötti hatékonyabb együttműködést, és hozzájárul a társadalmi felelősségvállalás előmozdításához.
 
@@ -15,18 +15,17 @@ Backend : Laravel;
 
 Adatbázis : MySql;
 
+
 ## Weboldal kinézetének megtekintése
 Github link: https://github.com/HelpConnectProject/Frontend.git
 
 ## Funkciók
 * Eseményszervezési lehetőség civil szervezetek számára
-* Regisztrált civil szervezetek listázása(kis leírás róluk, vélemények,        egyszerű fórum, bankszámlaszám, stb)
+* Regisztrált civil szervezetek listázása(kis leírás róluk, vélemények, bankszámlaszám, stb)
 * Eseményekre való jelentkezés lehetősége önkéntesek számára
 * Szűrési feltételek biztosítása az önkénteseknek(pl. 50 órás közösségi szolgálat)
-* Önkéntes jelvények(melyeket az eseményeken való részvétel után kaphat a felhasználó)
 * Legaktívabb önkéntesek megjelenítése a szervezet oldalán
 * A civil szervezet oldalán megjelennek a már véget ért események is, ahol arról véleményeket és képeket tud közölni a szervezet és az önkéntes is
-* Emlékeztetőt kapnának email-ben az önkéntesek a közelgő eseményről
 * Esemény státusza: Függőben, megtelt, lezárult
 * Önkéntes adatlap: név, profilkép, város, érdeklődési körök, tapasztalat/részvételi előzmények, képesítés, végzettség feltüntetése
 
@@ -69,10 +68,6 @@ Megjelenített statisztikák: aktív tagok száma, átlagos értékelés.
 * contactUsComponent - 
 Ügyfélszolgálatunk. Hibák, fennakadások esetén.
 
-* forumsComponent
-A különböző szervezetek fórumai(bejelentkezés nélkül lehet látni, de írni nem lehet)
-
-
 
 ### Bejelentkezéssel látható komponensek
 
@@ -94,24 +89,17 @@ munkáját.
 
 * organizationProfileComponent – a szervezet adatlapjának megtekintése és szerkesztése (leírás, logó, bankszámlaszám, elérhetőségek, kategória stb.).
 
-* organizationNotificationsComponent – rendszerértesítések kezelése (új jelentkezés, visszajelzés, eseményemlékeztetők). Ha pl. a felhasználók jelentkeznek egy eseményre, itt 
-ebben az értesítésiközpontban lesznek összegyűjtve.
 
 #### Önkénteseknek
 
 * volunteerProfileComponent - 
-A felhasználó saját profilja. Tartalmazza a profilképét, nevét, városát, rövid bemutatkozását, érdeklődési köreit, végzettségét/végzettségeit (szkamai hátterét), tapasztalatát (részvételi előzményeket), megszerzett jelvényeket az önkénteskedései során, értékelések amelyeket a szervezetektől kapott. A felhasználó szerkeztheti a saját adatait. 
+A felhasználó saját profilja. Tartalmazza a profilképét, nevét, városát, rövid bemutatkozását, érdeklődési köreit, végzettségét/végzettségeit (szakamai hátterét), tapasztalatát (részvételi előzményeket), megszerzett jelvényeket az önkénteskedései során, értékelések amelyeket a szervezetektől kapott. A felhasználó szerkeztheti a saját adatait. 
 
 * myEventsForUserComponent -
 Az önkéntes által követett vagy jelentkezett események listája. Megkülönböztetve: Aktív események.
 Lezárult események (itt lehet visszajelzést írni a szervezetről)
 Esemény státuszai (Függőben / Megtelt / Lezárult) vizuálisan is megjelennek.
 Lehetőség lemondani a részvételt, ha az esemény még nem kezdődött el.
-
-* volunteerNotificationsComponent -
-Rendszerértesítések a felhasználó számára. Emlékeztető közelgő eseményről.
-Szervezet visszajelzése az önkéntes munkáról.
-Új ajánlott esemény vagy szervezet megjelenése.
 
 * volunteerFeedbackComponent -
 Az önkéntes visszajelzést adhat egy lezárult eseményről vagy szervezetről.
@@ -203,58 +191,8 @@ Saját kommentek törlése.
 | image            | VARCHAR(255), NULL             | Kép (opcionális)  |
 | created\_at      | TIMESTAMP                      |                   |
 
-#### 6. badges
 
-| Oszlop      | Típus        | Megjegyzés   |
-| ----------- | ------------ | ------------ |
-| id          | INT (PK, AI) |              |
-| name        | VARCHAR(100) | Jelvény neve |
-| description | TEXT         | Leírás       |
-| icon        | VARCHAR(255) | Ikon         |
-| created\_at | TIMESTAMP    |              |
-
-#### 7. user_badges
-
-| Oszlop     | Típus                | Megjegyzés  |
-| ---------- | -------------------- | ----------- |
-| id         | INT (PK, AI)         |             |
-| user\_id   | INT (FK → users.id)  |             |
-| badge\_id  | INT (FK → badges.id) |             |
-| earned\_at | TIMESTAMP            | Mikor kapta |
-
-#### 8. forums
-
-| Oszlop           | Típus                       | Megjegyzés       |
-| ---------------- | --------------------------- | ---------------- |
-| id               | INT (PK, AI)                |                  |
-| organization\_id | INT (FK → organizations.id) | Fórum szervezete |
-| title            | VARCHAR(255)                | Fórum témája     |
-| created\_at      | TIMESTAMP                   |                  |
-
-#### 9. forum_posts
-
-| Oszlop           | Típus                                 | Megjegyzés        |
-| ---------------- | ------------------------------------- | ----------------- |
-| id               | INT (PK, AI)                          |                   |
-| forum\_id        | INT (FK → forums.id)                  |                   |
-| user\_id         | INT (FK → users.id, NULLABLE)         |                   |
-| organization\_id | INT (FK → organizations.id, NULLABLE) |                   |
-| content          | TEXT                                  | Bejegyzés szövege |
-| created\_at      | TIMESTAMP                             |                   |
-
-#### 10. notifications
-
-| Oszlop           | Típus                                 | Megjegyzés                             |
-| ---------------- | ------------------------------------- | -------------------------------------- |
-| id               | INT (PK, AI)                          |                                        |
-| user\_id         | INT (FK → users.id, NULLABLE)         |                                        |
-| organization\_id | INT (FK → organizations.id, NULLABLE) |                                        |
-| message          | TEXT                                  | Értesítés tartalma                     |
-| type             | VARCHAR(100)                          | pl. "event\_reminder", "new\_feedback" |
-| is\_read         | BOOLEAN                               | Alapértelmezett: false                 |
-| created\_at      | TIMESTAMP                             |                                        |
-
-## Végpontterv (REST API Endpointok)
+## Végpontterv (REST API Endpointok) és CRUD műveltek
 
 #### Autentikáció
 
@@ -272,8 +210,7 @@ Saját kommentek törlése.
 | `PUT`   | `/api/users/{id}`                    | Saját profil szerkesztése       |
 | `GET`   | `/api/users/{id}/badges`             | Saját jelvényei                 |
 | `GET`   | `/api/users/{id}/events`             | Részvett események              |
-| `GET`   | `/api/users/{id}/notifications`      | Értesítések lekérése            |
-| `PUT`   | `/api/users/{id}/notifications/read` | Értesítések olvasottra állítása |
+
 
 #### Civil szervezetek
 
@@ -285,7 +222,7 @@ Saját kommentek törlése.
 | `GET`   | `/api/organizations/{id}/events`        | Az adott szervezet eseményei      |
 | `GET`   | `/api/organizations/{id}/volunteers`    | Korábbi önkéntesek listája        |
 | `GET`   | `/api/organizations/{id}/feedbacks`     | Visszajelzések lekérése           |
-| `POST`  | `/api/organizations/{id}/notifications` | Új értesítés létrehozása          |
+
 
 #### Események
 | Módszer  | URL                         | Leírás                 |
@@ -306,20 +243,4 @@ Saját kommentek törlése.
 | `GET`   | `/api/feedbacks/{organization_id}` | Egy szervezethez tartozó értékelések lekérése |
 | `GET`   | `/api/feedbacks/event/{event_id}`  | Egy eseményhez tartozó értékelések lekérése   |
 
-#### Fórum
 
-| Módszer  | URL                      | Leírás                                 |
-| -------- | ------------------------ | -------------------------------------- |
-| `GET`    | `/api/forums`            | Fórumok listája                        |
-| `GET`    | `/api/forums/{id}`       | Egy fórum témái                        |
-| `POST`   | `/api/forums`            | Új fórum létrehozása (szervezet által) |
-| `POST`   | `/api/forums/{id}/posts` | Új hozzászólás létrehozása             |
-| `DELETE` | `/api/forums/posts/{id}` | Saját komment törlése                  |
-
-#### Jelvények
-
-| Módszer | URL                                 | Leírás                                |
-| ------- | ----------------------------------- | ------------------------------------- |
-| `GET`   | `/api/badges`                       | Jelvények listája                     |
-| `POST`  | `/api/badges`                       | Új jelvény létrehozása (admin)        |
-| `POST`  | `/api/users/{id}/badges/{badge_id}` | Jelvény hozzárendelése felhasználóhoz |
