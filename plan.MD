@@ -52,7 +52,7 @@ Szervező neve + link a szervezet profiljára.
 Jelentkezés gomb (ha van még hely).
 Ha nem vagy bejelentkezve, akkor nem tudsz jelentkezni az eseményre. Ha be vagy jelentkezve, akkor tudsz rá jelentkezni önkéntesként (tehát felhasználóként).
 
-* organizationListComponent - 
+* organizationsComponent - 
 A civil szervezetek listája. Innen fog majd az adott szervezet konkrét adatlapjára vezetni ->
 
 * organizationDetailsComponent -
