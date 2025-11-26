@@ -124,6 +124,7 @@ Saját kommentek törlése.
 | id             | INT (PK, AI)         | Felhasználó azonosító          |
 | name           | VARCHAR(100)         | Név                            |
 | email          | VARCHAR(150), UNIQUE | E-mail                         |
+| phone          | VARCHAR(150), UNIQUE | Telefonszám                    |
 | password       | VARCHAR(255)         | Titkosított jelszó             |
 | city           | VARCHAR(100)         | Város                          |
 | about          | TEXT                 | Rövid bemutatkozás             |
