@@ -154,7 +154,17 @@ Saját kommentek törlése.
 | created\_at     | TIMESTAMP            |                           |
 | updated\_at     | TIMESTAMP            |                           |
 
-#### 3. events
+#### 3. organization_members
+| Oszlop          | Típus                                     | Megjegyzés                       |
+|-----------------|-------------------------------------------|----------------------------------|
+| id              | INT (PK, AI)                              | Egyedi azonosító                |
+| organization_id | INT (FK → organizations.id)               | Melyik szervezethez tartozik    |
+| user_id         | INT (FK → users.id)                       | Melyik felhasználó              |
+| role            | ENUM('tag', 'admin', 'tulajdonos')        | Jogkör a szervezetben           |
+| status          | ENUM('aktív', 'inaktív')                  | Tagság státusza                 |
+| joined_at       | TIMESTAMP                                 | Csatlakozás ideje               |
+
+#### 4. events
 
 | Oszlop           | Típus                                   | Megjegyzés        |
 | ---------------- | --------------------------------------- | ----------------- |
@@ -169,7 +179,7 @@ Saját kommentek törlése.
 | created\_at      | TIMESTAMP                               |                   |
 | updated\_at      | TIMESTAMP                               |                   |
 
-#### 4. event_registrations
+#### 5. event_registrations
 
 | Oszlop         | Típus                                     | Megjegyzés             |
 | -------------- | ----------------------------------------- | ---------------------- |
@@ -179,7 +189,7 @@ Saját kommentek törlése.
 | status         | ENUM('Függőben', 'Elfogadva', 'Lemondva') |                        |
 | registered\_at | TIMESTAMP                                 | Jelentkezés ideje      |
 
-#### 5. feedbacks
+#### 6. feedbacks
 
 | Oszlop           | Típus                          | Megjegyzés        |
 | ---------------- | ------------------------------ | ----------------- |
@@ -243,5 +253,3 @@ Saját kommentek törlése.
 | `POST`  | `/api/feedbacks`                   | Új értékelés létrehozása                      |
 | `GET`   | `/api/feedbacks/{organization_id}` | Egy szervezethez tartozó értékelések lekérése |
 | `GET`   | `/api/feedbacks/event/{event_id}`  | Egy eseményhez tartozó értékelések lekérése   |
-
-
